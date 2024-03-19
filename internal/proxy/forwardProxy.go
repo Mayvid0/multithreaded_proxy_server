@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"sync"
 	"time"
 
 	logs "github.com/Mayvid0/proxy_server/internal/AccessLog"
@@ -16,6 +17,7 @@ import (
 var (
 	customTransport = http.DefaultTransport
 	lruCache        = lru.NewLRUCache(1000)
+	mutex           sync.Mutex
 )
 
 func ForwardProxy(w http.ResponseWriter, r *http.Request) {
@@ -26,6 +28,7 @@ func ForwardProxy(w http.ResponseWriter, r *http.Request) {
 	// Create a new HTTP request with the same method, URL, and body as the original request
 	targetURL := r.URL
 
+	mutex.Lock()
 	if cachedResponse := lruCache.Get(targetURL.String()); cachedResponse != "" {
 		searchStatus := "Success"
 		if cachedResponse == "" {
@@ -45,6 +48,7 @@ func ForwardProxy(w http.ResponseWriter, r *http.Request) {
 		accessLog := fmt.Sprintf("%s - accessed by ip: %s, date: %s, status: %s\n", targetURL, r.RemoteAddr, time.Now().Format("2006-01-02 15:04:05"), searchStatus)
 		logs.WriteLogToFile(accessLog)
 	} else {
+		mutex.Unlock()
 		proxyReq, err := http.NewRequestWithContext(ctx, r.Method, targetURL.String(), r.Body)
 
 		if err != nil {
@@ -94,7 +98,10 @@ func ForwardProxy(w http.ResponseWriter, r *http.Request) {
 
 		// Convert the byte slice to a string
 		responseToBeStoredInCache := string(bodyBytes)
+
+		mutex.Lock()
 		lruCache.Put(targetURL.String(), responseToBeStoredInCache)
+		mutex.Unlock()
 		// Create a reader from the byte slice
 		reader := strings.NewReader(responseToBeStoredInCache)
 
