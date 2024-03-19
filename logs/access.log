@@ -1,3 +1,0 @@
-http://localhost:8080/ - accessed by ip: [::1]:60410, date: 2024-03-17 13:27:04, status: Success
-http://localhost:8080/hello - accessed by ip: [::1]:60412, date: 2024-03-17 13:27:06, status: Success
-http://localhost:8080/hello/form - accessed by ip: [::1]:60413, date: 2024-03-17 13:27:11, status: Success
