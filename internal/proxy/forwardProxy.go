@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	logs "github.com/Mayvid0/proxy_server/internal/AccessLog"
-	lru "github.com/Mayvid0/proxy_server/internal/lruCache"
+	logs "github.com/Mayvid0/multithreaded_proxy_server/internal/AccessLog"
+	lru "github.com/Mayvid0/multithreaded_proxy_server/internal/lruCache"
 )
 
 var (
@@ -47,6 +47,7 @@ func ForwardProxy(w http.ResponseWriter, r *http.Request) {
 
 		accessLog := fmt.Sprintf("%s - accessed by ip: %s, date: %s, status: %s\n", targetURL, r.RemoteAddr, time.Now().Format("2006-01-02 15:04:05"), searchStatus)
 		logs.WriteLogToFile(accessLog)
+		mutex.Unlock()
 	} else {
 		mutex.Unlock()
 		proxyReq, err := http.NewRequestWithContext(ctx, r.Method, targetURL.String(), r.Body)
