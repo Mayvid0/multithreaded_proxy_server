@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	logs "github.com/Mayvid0/proxy_server/internal/AccessLog"
+	logs "github.com/Mayvid0/multithreaded_proxy_server/internal/AccessLog"
 )
 
 func TestWriting() {

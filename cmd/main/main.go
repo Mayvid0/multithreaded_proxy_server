@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Mayvid0/proxy_server/internal/proxy"
+	"github.com/Mayvid0/multithreaded_proxy_server/internal/proxy"
 )
 
 func routes() http.Handler {
