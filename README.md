@@ -12,6 +12,13 @@ This project is a multithreaded proxy server implemented in Go, designed to hand
 
 - **Thread Safety**: To maintain thread safety and prevent data races, the project employs mutexes for cache operations. Mutexes ensure that only one goroutine accesses the cache at a time, preventing concurrent writes or reads that could lead to inconsistencies or race conditions.
 
+![Image 1](server.png)
+![Image 2](output.png)
+![Image 3](accesslog.png)
+
+
+
+
 ## Contributing
 
 Contributions to this project are welcome! If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request to the repository.

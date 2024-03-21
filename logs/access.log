@@ -58,3 +58,7 @@ http://localhost:8080/hello - accessed by ip: [::1]:50497, date: 2024-03-21 22:3
 http://localhost:8080/hello - accessed by ip: [::1]:50512, date: 2024-03-21 22:35:52, status: Success
 http://localhost:8080/hello - accessed by ip: [::1]:50495, date: 2024-03-21 22:35:52, status: Success
 http://localhost:8080/hello - accessed by ip: [::1]:50513, date: 2024-03-21 22:35:52, status: Success
+http://localhost:8080/ - accessed by ip: [::1]:50599, date: 2024-03-21 22:45:37, status: Success
+http://localhost:8080/ - accessed by ip: [::1]:50601, date: 2024-03-21 22:45:43, status: Success
+http://localhost:8080/ - accessed by ip: [::1]:50605, date: 2024-03-21 22:46:00, status: Success
+http://localhost:8080/ - accessed by ip: [::1]:50607, date: 2024-03-21 22:46:03, status: Success
