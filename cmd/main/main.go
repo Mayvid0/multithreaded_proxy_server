@@ -28,6 +28,7 @@ func main() {
 	// Start the server and log any errors
 	log.Println("Starting proxy server on :8000")
 	err := server.ListenAndServe()
+
 	if err != nil {
 		log.Fatal("Error starting proxy server: ", err)
 	}
